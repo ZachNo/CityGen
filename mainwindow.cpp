@@ -45,8 +45,17 @@ void MainWindow::generate()
     {
         for(int j = 0; j < ui->viewport->height(); ++j)
         {
+            double cut1 = 80.0;
+            double cut2 = 160.0;
+            QRgb color;
             double c = (o.noise(i/scale + x, j/scale + y)-min)/(max-min)*255.;
-            display->setPixel(i,j,qRgb(c, c, c));
+            if(c < cut1)
+                color = qRgb(255, 0, 0);
+            else if(c < cut2)
+                color = qRgb(0, 255, 0);
+            else
+                color = qRgb(0, 0, 255);
+            display->setPixel(i ,j, color);
         }
     }
     ui->viewport->setPixmap(QPixmap::fromImage(*display));
@@ -56,30 +65,30 @@ void MainWindow::generate()
 
 void MainWindow::changeZoom()
 {
-    ui->zoomLevel->setText(QString::number(1/static_cast<float>(ui->sizeSlider->value())));
+    ui->zoomLevel->setText(QString::number(1/static_cast<double>(ui->sizeSlider->value())));
     generate();
 }
 
 void MainWindow::moveDown()
 {
-    y += MOVESPEED / ui->sizeSlider->value();
+    y += MOVESPEED / static_cast<double>(ui->sizeSlider->value());
     generate();
 }
 
 void MainWindow::moveUp()
 {
-    y -= MOVESPEED / ui->sizeSlider->value();
+    y -= MOVESPEED / static_cast<double>(ui->sizeSlider->value());
     generate();
 }
 
 void MainWindow::moveLeft()
 {
-    x -= MOVESPEED / ui->sizeSlider->value();
+    x -= MOVESPEED / static_cast<double>(ui->sizeSlider->value());
     generate();
 }
 
 void MainWindow::moveRight()
 {
-    x += MOVESPEED / ui->sizeSlider->value();
+    x += MOVESPEED / static_cast<double>(ui->sizeSlider->value());
     generate();
 }

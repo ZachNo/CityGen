@@ -14,6 +14,8 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     featuregenerator.h \
     OpenSimplex.h \
-    roadgen.h
+    roadgen.h \
+    generator.h \
+    utility.h
 
 FORMS    += mainwindow.ui
