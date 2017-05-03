@@ -14,7 +14,6 @@ const double OpenSimplex::SQUISH_CONSTANT_4D = 0.309016994374947;	// (Math.sqrt(
 const int OpenSimplex::NORM_CONSTANT_2D = 47;
 const int OpenSimplex::NORM_CONSTANT_3D = 103;
 const int OpenSimplex::NORM_CONSTANT_4D = 30;
-const int OpenSimplex::DEFAULT_SEED = 0;
 const int8_t OpenSimplex::GRADIENTS_2D[4*4] = {
     5, 2, 2, 5,
     -5, 2, -2, 5,
@@ -50,7 +49,7 @@ const int8_t OpenSimplex::GRADIENTS_4D[16*16] = {
     -3, -1, -1, -1, -1, -3, -1, -1, -1, -1, -3, -1, -1, -1, -1, -3
 };
 
-OpenSimplex::OpenSimplex(int64_t seed)
+OpenSimplex::OpenSimplex(int64_t seed) : NoiseGen(seed)
 {
 	perm = new int8_t[256];
 	perm2D = new int8_t[256];
@@ -264,7 +263,7 @@ double OpenSimplex::noise(double x, double y)
 		}
 		c = c->next;
 	}
-	return value * NORM_CONSTANT_2D;
+    return (value * NORM_CONSTANT_2D + 2000)/6600;
 }
 
 double OpenSimplex::noise(double x, double y, double z)

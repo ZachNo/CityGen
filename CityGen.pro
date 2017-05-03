@@ -9,13 +9,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     OpenSimplex.cpp \
-    roadgen.cpp
+    roadgen.cpp \
+    cellnoise.cpp \
+    utility.cpp \
+    noise.cpp \
+    FastNoise.cpp
 
 HEADERS  += mainwindow.h \
     featuregenerator.h \
     OpenSimplex.h \
     roadgen.h \
     generator.h \
-    utility.h
+    utility.h \
+    noise.h \
+    cellnoise.h \
+    FastNoise.h
 
 FORMS    += mainwindow.ui

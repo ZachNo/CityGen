@@ -2,14 +2,15 @@
 #define OPENSIMPLEX_H
 
 #include <cstdint>
+#include "noise.h"
 
 //OpenSimplex C++ implementation translated from Java and C#
 //Credits: https://gist.github.com/KdotJPG/b1270127455a94ac5d19 https://gist.github.com/digitalshadow/134a3a02b67cecd72181
 
-class OpenSimplex
+class OpenSimplex : public NoiseGen
 {
 public:
-	OpenSimplex(int64_t seed = DEFAULT_SEED);
+    OpenSimplex(int64_t seed = DEFAULT_SEED);
 	OpenSimplex(const OpenSimplex&);
 	OpenSimplex(OpenSimplex&&);
 	OpenSimplex& operator=(const OpenSimplex&);
@@ -30,7 +31,6 @@ private:
     static const int NORM_CONSTANT_2D;
     static const int NORM_CONSTANT_3D;
     static const int NORM_CONSTANT_4D;
-    static const int DEFAULT_SEED;
     static const int8_t GRADIENTS_2D[];
     static const int8_t GRADIENTS_3D[];
     static const int8_t GRADIENTS_4D[];
